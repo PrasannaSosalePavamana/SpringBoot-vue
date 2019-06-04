@@ -1,31 +1,32 @@
 pipeline {
     agent any
-
+ tools {
+        maven 'Maven_3.5.2' 
+    }
     stages {
         stage ('Compile Stage') {
 
             steps {
-                maven(maven : 'LocalMaven') {
+             
                     bat 'mvn clean compile'
-                }
+               
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                maven(maven : 'LocalMaven') {
-                    bat 'mvn test'
-                }
+                   bat 'mvn test'
+                
             }
         }
 
 
         stage ('Deployment Stage') {
             steps {
-                maven(maven : 'LocalMaven') {
+             
                     bat 'mvn deploy'
-                }
+                
             }
         }
     }
