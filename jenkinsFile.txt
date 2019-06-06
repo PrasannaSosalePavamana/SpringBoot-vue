@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     tools {
+        maven 'LocalMaven' 
+    }
     stages {
         stage('SCM') {
             steps {
@@ -10,9 +13,9 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube') {
                     // Optionally use a Maven environment you've configured already
-                    withMaven(maven:'LocalMaven') {
+                  
                         sh 'mvn clean package sonar:sonar'
-                    }
+                    
                 }
             }
         }
